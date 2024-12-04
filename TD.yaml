@@ -1,0 +1,173 @@
+openapi: 3.1.0
+info:
+  title: API_TD1
+  version: '1.0.0'
+servers:
+  - url: https://library.com
+paths:
+  /books:
+    get:
+      tags:
+        - Book
+      parameters:
+        - name: bookId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        200:
+          description: List of books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+    post:
+      tags:
+        - Book
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+        required: true
+      responses:
+        201:
+          description: Book added successfully
+    put:
+      tags:
+        - Book
+      parameters:
+        - name: bookId
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        200:
+          description: Book updated successfully
+    delete:
+      tags:
+        - Book
+      parameters:
+        - name: bookId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Book deleted successfully
+  /authors:
+    get:
+      tags:
+        - Author
+      parameters:
+        - name: AuthorName
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: List of authors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+    post:
+      tags:
+        - Author
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+        required: true
+      responses:
+        201:
+          description: Author added successfully
+    put:
+      tags:
+        - Author
+      parameters:
+        - name: AuthorId
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+      responses:
+        200:
+          description: Author updated successfully
+    delete:
+      tags:
+        - Author
+      parameters:
+        - name: AuthorId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Author deleted successfully
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        bookId:
+          type: string
+        bookName:
+          type: string
+        author:
+          type: string
+        pageNumbers:
+          type: integer
+        topic:
+          type: string
+          enum:
+            - ROMANCE
+            - COMEDY
+            - OTHER
+        releaseDate:
+          type: string
+          format: date
+    Author:
+      type: object
+      properties:
+        authorId:
+          type: string
+        name:
+          type: string
+        sex:
+          type: string
+          enum:
+            - M
+            - F
