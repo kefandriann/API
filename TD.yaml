@@ -1,16 +1,16 @@
-openapi: 3.1.0
+openapi: 3.0.3
 info:
   title: API_TD1
   version: '1.0.0'
 servers:
-  - url: https://library.com
+  - url: https://student-management.com
 paths:
-  /books:
+  /groups:
     get:
       tags:
-        - Book
+        - Group
       parameters:
-        - name: bookId
+        - name: groupId
           in: query
           required: false
           schema:
@@ -29,30 +29,30 @@ paths:
             format: date
       responses:
         200:
-          description: List of books
+          description: List of groups
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Book'
+                  $ref: '#/components/schemas/Group'
     post:
       tags:
-        - Book
+        - Group
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Book'
+              $ref: '#/components/schemas/Group'
         required: true
       responses:
         201:
-          description: Book added successfully
+          description: Group added successfully
     put:
       tags:
-        - Book
+        - Group
       parameters:
-        - name: bookId
+        - name: groupId
           in: query
           required: true
           schema:
@@ -61,26 +61,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Book'
+              $ref: '#/components/schemas/Group'
       responses:
         200:
-          description: Book updated successfully
+          description: Group updated successfully
     delete:
       tags:
-        - Book
+        - Group
       parameters:
-        - name: bookId
+        - name: groupId
           in: query
           required: true
           schema:
             type: string
       responses:
         200:
-          description: Book deleted successfully
-  /authors:
+          description: Group deleted successfully
+  /students:
     get:
       tags:
-        - Author
+        - Student
       parameters:
         - name: AuthorName
           in: query
@@ -89,30 +89,30 @@ paths:
             type: string
       responses:
         200:
-          description: List of authors
+          description: List of students
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Author'
+                  $ref: '#/components/schemas/Student'
     post:
       tags:
-        - Author
+        - Student
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Author'
+              $ref: '#/components/schemas/Student'
         required: true
       responses:
         201:
-          description: Author added successfully
+          description: Student added successfully
     put:
       tags:
-        - Author
+        - Student
       parameters:
-        - name: AuthorId
+        - name: studentId
           in: query
           required: true
           schema:
@@ -121,48 +121,50 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Author'
+              $ref: '#/components/schemas/Student'
       responses:
         200:
-          description: Author updated successfully
+          description: Student updated successfully
     delete:
       tags:
-        - Author
+        - Student
       parameters:
-        - name: AuthorId
+        - name: studentId
           in: query
           required: true
           schema:
             type: string
       responses:
         200:
-          description: Author deleted successfully
+          description: Student deleted successfully
 components:
   schemas:
-    Book:
+    Group:
       type: object
       properties:
-        bookId:
+        groupId:
           type: string
-        bookName:
+        groupName:
           type: string
-        author:
+        groupYear:
           type: string
-        pageNumbers:
+        studentNb:
           type: integer
-        topic:
+        promotion:
           type: string
           enum:
-            - ROMANCE
-            - COMEDY
-            - OTHER
-        releaseDate:
-          type: string
-          format: date
-    Author:
+            - G
+            - H
+            - J
+            - K
+        students:
+          type: array
+          items:
+            $ref: '#/components/schemas/Student'
+    Student:
       type: object
       properties:
-        authorId:
+        studentId:
           type: string
         name:
           type: string
@@ -171,3 +173,10 @@ components:
           enum:
             - M
             - F
+        birthdate:
+          type: string
+          format: date
+        reference:
+          type: string
+        group:
+          type: string
