@@ -82,7 +82,7 @@ paths:
       tags:
         - Student
       parameters:
-        - name: AuthorName
+        - name: studentName
           in: query
           required: false
           schema:
