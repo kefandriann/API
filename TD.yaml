@@ -1,8 +1,11 @@
 openapi: 3.0.3
 info:
   title: API_TD1
-  version: '1.1.0'
+  version: 1.0.0
 servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/HEIKEPHAS/Student_management/1.0.0
   - url: https://student-management.com
 paths:
   /groups:
