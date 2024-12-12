@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: API_TD1
-  version: '1.0.0'
+  version: '1.1.0'
 servers:
   - url: https://student-management.com
 paths:
