@@ -137,6 +137,52 @@ paths:
       responses:
         200:
           description: Student deleted successfully
+  /students/{studentId}/group:
+    put:
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        200:
+          description: Student updated successfuly
+  /students/group:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Group'
+                - type: array
+                  items:
+                    type: string
+      responses:
+        200:
+          description: Students updated successfully
+  /students/{studentId}/groups/{groupId}:
+    put:
+      parameters:
+        - name: studentId
+          in : path
+          required: true
+          schema:
+            type: string
+        - name: groupId
+          in : path
+          required: true
+          schema:
+            type: string
+      responses:
+       200:
+        description: Student updated successfully
 components:
   schemas:
     Group:
